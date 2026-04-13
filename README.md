@@ -1,5 +1,5 @@
 
-# Building a Secure Hub-and-Spoke Network: A Journey in Azure Routing
+# Building a Secure Hub-and-Spoke Network
 
 ## The Goal
 I didn't just want to connect two networks; I wanted to build an environment that mirrors how real companies handle security. My goal was to create a "Hub-and-Spoke" system where every bit of data moving between the Spokes is forced to pass through a central Hub. This creates a single "choke point" where a security team could monitor or block suspicious activity.
