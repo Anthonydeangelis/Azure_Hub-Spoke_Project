@@ -10,12 +10,15 @@ resource nic 'Microsoft.Network/networkInterfaces@2023-09-01' = {
   name: '${vmName}-nic'
   location: location
   properties: {
+    enableIPForwarding: true // Required for routing through the hub VM
     ipConfigurations: [
       {
         name: 'ipconfig1'
         properties: {
           privateIPAllocationMethod: 'Dynamic'
           subnet: { id: subnetId }
+          
+          
         }
       }
     ]

@@ -4,6 +4,7 @@ param vnetAddressPrefix string
 param subnetName string
 param subnetAddressPrefix string
 param location string = resourceGroup().location
+param routeTableId string = '' // Default to empty if not provided
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
   name: '${vnetName}-nsg'
@@ -38,6 +39,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
         properties: {
           addressPrefix: subnetAddressPrefix
           networkSecurityGroup: { id: nsg.id }
+          routeTable: !empty(routeTableId) ? { id: routeTableId } : null
         }
       }
     ]

@@ -100,3 +100,25 @@ module spokeToHubPeering './modules/peering.bicep' = [for (spoke, i) in spokeCon
     remoteVnetId: hubVnet.outputs.vnetId
   }
 }]
+
+// Route Table for Spoke A (Tells it how to find Spoke B)
+module routeTableA './modules/routeTable.bicep' = {
+  name: 'spokeARouteTable'
+  params: {
+    routeTableName: 'SpokeA-to-Hub-RT'
+    location: location
+    destinationCIDR: '10.2.0.0/16' // Spoke B's Range
+    hubVmIp: '10.0.1.4'           // Hub VM Private IP
+  }
+}
+
+// Route Table for Spoke B (Tells it how to find Spoke A)
+module routeTableB './modules/routeTable.bicep' = {
+  name: 'spokeBRouteTable'
+  params: {
+    routeTableName: 'SpokeB-to-Hub-RT'
+    location: location
+    destinationCIDR: '10.1.0.0/16' // Spoke A's Range
+    hubVmIp: '10.0.1.4'           // Hub VM Private IP
+  }
+}
