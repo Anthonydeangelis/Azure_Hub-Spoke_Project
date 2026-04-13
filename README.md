@@ -13,7 +13,7 @@ I started by writing modular Bicep templates. I didn't want one giant file that 
 
 
 
-### Step 2: Designing the "Next Hop" (The Edit)
+### Step 2: Creating the UDR
 To fix the isolation, I had to "teach" the network how to find the other side. 
 * I went back into my code and created a **Route Table** module. 
 * I defined a rule that told the traffic: *"If you are trying to reach the other Spoke, don't try to go there directly. Go to the Hub VM's IP address instead."*
